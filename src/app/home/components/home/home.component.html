@@ -1,0 +1,79 @@
+<div class="home-container">
+  <div class="logo-area">
+    <div class="logo">
+      <img src="../../../../assets/home/logo.png" alt="logo" />
+    </div>
+    <div class="slogan">
+      <p>Your Document Detective: Uncover Hidden Mistakes</p>
+    </div>
+  </div>
+  <div class="about-info">
+    <div class="info">
+      <div class="detail-area">
+        <div class="icon-area">
+          <img
+            src="../../../../assets/home/magnifying-glass.png"
+            alt="search-icon"
+          />
+        </div>
+        <div class="details">
+          <p id="first-tag">
+            &#x2714; Spot Errors Instantly: Let our OCR detect future dates and
+            human-made corrections, ensuring your documents are flawless.
+          </p>
+          <p id="second-tag">
+            &#x2714; Empower Your Workflow: Automatically uncover hidden
+            mistakes in PDFs and images with cutting-edge OCR technology.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="input-area">
+    <div class="drop-area">
+      <div
+        class="dropzone"
+        (dragover)="onDragOver($event)"
+        (dragleave)="onDragLeave($event)"
+        (drop)="onDrop($event)"
+      >
+        <p *ngIf="!selectedFile">Drag & drop a file here or click to select</p>
+        <p *ngIf="selectedFile">
+          Drag & drop a other file here or click to select
+        </p>
+        <input type="file" (change)="onFileSelected($event)" />
+      </div>
+    </div>
+    <div class="button-area">
+      <button [disabled]="!selectedFile" (click)="onSubmit()" mat-raised-button>
+        Submit
+      </button>
+    </div>
+
+    <div class="spinner-area">
+      <p *ngIf="!showProgressSpinner">{{ date_message }}</p>
+      <mat-spinner *ngIf="showProgressSpinner"></mat-spinner>
+    </div>
+
+    <div *ngIf="selectedFile" class="preview">
+      <div class="image-area">
+        <img *ngIf="isImage" [src]="filePreview" alt="Image Preview" />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <img *ngIf="image_result" [src]="image_result" alt="results-image" />
+      </div>
+
+      <object
+        *ngIf="!isImage"
+        [data]="filePreview"
+        type="application/pdf"
+        width="100%"
+        height="500px"
+      >
+        <p>
+          Your browser does not support PDFs. Please download the PDF to view
+          it.
+        </p>
+      </object>
+    </div>
+  </div>
+</div>

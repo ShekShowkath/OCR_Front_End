@@ -1,0 +1,517 @@
+.home-container {
+  width: 100%;
+  height: auto;
+
+  .logo-area {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 20px;
+
+    .logo {
+      max-width: 250px; // Restrict the maximum width
+      width: 100%;
+      height: auto;
+      display: flex;
+      justify-content: flex-start; // Align the logo to the left
+      padding-left: 25px;
+
+      img {
+        width: 100%; // Make the image responsive
+        height: auto; // Keep the aspect ratio
+        object-fit: contain; // Ensure the image fits within the given space without cropping
+        /* Animation for sliding in with delay */
+        animation: slideInFromLeft 1s ease-out;
+        animation-delay: 0.5s; // Delay before the animation starts
+        opacity: 0; // Start hidden
+        animation-fill-mode: forwards; // Maintain the final state after animation ends
+      }
+    }
+
+    .slogan {
+      width: auto;
+      height: auto;
+      padding-right: 25px;
+
+      p {
+        font-size: 2vw; // Make the text size responsive
+        color: orange;
+        margin: 0;
+        text-align: right;
+
+        /* Animation for sliding from the bottom with delay */
+        animation: slideInFromBottom 1.5s ease-out;
+        animation-delay: 0.5s; /* Delay before the animation starts */
+        opacity: 0; /* Start with the text hidden */
+        animation-fill-mode: forwards; /* Ensures the final state of the animation is maintained */
+      }
+    }
+  }
+
+  /* Keyframes for sliding image from the left */
+  @keyframes slideInFromLeft {
+    from {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  /* Keyframes for sliding paragraph from the bottom */
+  @keyframes slideInFromBottom {
+    from {
+      transform: translateY(50%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  .about-info {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    // border: 1px solid darkblue;
+    .info {
+      width: 75%;
+      height: auto;
+      // border: 1px solid hotpink;
+      // padding: 20px;
+
+      .detail-area {
+        width: 100%;
+        height: auto;
+        display: flex;
+        align-items: center;
+
+        .icon-area {
+          width: auto;
+          height: auto;
+
+          img {
+            width: 100px;
+            height: 100px;
+            // border: 1px solid rebeccapurple;
+            /* Animation for sliding from the left with delay */
+            animation: slideInFromLeft 2s ease-out;
+            animation-delay: 0.5s; /* Delay before the animation starts */
+            opacity: 0; /* Start with the image hidden */
+            animation-fill-mode: forwards; /* Ensures the final state of the animation is maintained */
+          }
+        }
+
+        .details {
+          min-width: 75%;
+          width: 100%;
+          height: auto;
+          //   border: 1px solid slateblue;
+          margin-left: 20px;
+
+          p {
+            font-size: 18px;
+            color: #003e6a;
+            font-weight: 550;
+            position: relative;
+
+            /* Animation for typing effect with delay */
+            animation: typing 3s steps(40, end), blink 0.75s step-end infinite;
+            animation-delay: 0.8s;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 0.15em solid orange;
+            width: 0;
+            animation-fill-mode: both;
+
+            /* After animation completes, allow text to wrap */
+            &.animated {
+              white-space: normal;
+              overflow: visible;
+              border-right: none;
+            }
+          }
+          #second-tag {
+            animation-delay: 3s;
+          }
+        }
+      }
+    }
+  }
+
+  .input-area {
+    width: 100%;
+    height: 100%;
+    // border: 1px solid slateblue;
+    // padding: 20px;
+    box-sizing: border-box;
+    .drop-area {
+      width: 100%;
+      height: auto;
+      margin-top: 15px;
+      display: flex;
+      justify-content: center;
+      .dropzone {
+        width: 75%;
+        border: 2px dashed #003e6a;
+        height: 20vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        text-align: center;
+        transition: background-color 0.3s ease;
+        position: relative;
+
+        /* Animation for sliding from the bottom with delay */
+        animation: slideInFromBottom 1.5s ease-out;
+        animation-delay: 0.5s; /* Delay before the animation starts */
+        opacity: 0; /* Start with the text hidden */
+        animation-fill-mode: forwards; /* Ensures the final state of the animation is maintained */
+
+        p {
+          color: #003e6a;
+          font-weight: 550;
+          margin: 0;
+        }
+
+        input[type="file"] {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          opacity: 0;
+          cursor: pointer;
+        }
+
+        &:hover {
+          background-color: #f0f8ff;
+        }
+      }
+    }
+
+    .button-area {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      button {
+        margin-top: 20px;
+        padding: 10px 20px;
+        background-color: slateblue;
+        color: white;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+
+        /* Animation for sliding from the bottom with delay */
+        animation: slideInFromBottom 1.5s ease-out;
+        animation-delay: 0.75s; /* Delay before the animation starts */
+        opacity: 0; /* Start with the text hidden */
+        animation-fill-mode: forwards; /* Ensures the final state of the animation is maintained */
+
+        &:hover {
+          background-color: #3b5998;
+        }
+
+        &:disabled {
+          background-color: #b0c4de;
+          cursor: not-allowed;
+        }
+      }
+    }
+
+    .spinner-area {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+      
+    }
+
+    .preview {
+      margin-top: 20px;
+      text-align: center;
+      // border: 1px solid lawngreen;
+      .image-area {
+        width: 100%;
+
+        img {
+          width: 600px;
+          max-width: 100%;
+          max-height: 600px;
+          // border: 1px solid slateblue;
+        }
+      }
+
+      object {
+        width: 90%;
+      }
+    }
+  }
+
+  /* Keyframes for sliding image from the left */
+  @keyframes slideInFromLeft {
+    from {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  /* Keyframes for typing effect */
+  @keyframes typing {
+    from {
+      width: 0;
+    }
+    to {
+      width: 100%;
+    }
+  }
+
+  /* Cursor blink effect */
+  @keyframes blink {
+    from,
+    to {
+      border-color: transparent;
+    }
+    50% {
+      border-color: transparent;
+    }
+  }
+
+  /**
+Media Queries
+**/
+  @media screen and (min-width: 1100px) and (max-width: 1200px) {
+    .logo-area {
+      .logo {
+        width: 100%;
+      }
+      .slogan {
+        font-size: 2vw;
+      }
+    }
+    .about-info {
+      .info {
+        .detail-area {
+          .details {
+            p {
+              font-size: 16px;
+              width: 100%;
+              animation: none; /* Disable animation on smaller screens */
+              white-space: normal;
+              overflow: visible;
+              border-right: none;
+            }
+          }
+        }
+      }
+    }
+  }
+  @media screen and (min-width: 1024px) and (max-width: 1100px) {
+    .logo-area {
+      .logo {
+        width: 100%;
+      }
+      .slogan {
+        font-size: 2vw;
+      }
+    }
+    .about-info {
+      .info {
+        .detail-area {
+          .details {
+            p {
+              font-size: 16px;
+              width: 100%;
+              animation: none; /* Disable animation on smaller screens */
+              white-space: normal;
+              overflow: visible;
+              border-right: none;
+            }
+          }
+        }
+      }
+    }
+  }
+  @media screen and (min-width: 769px) and (max-width: 1024px) {
+    .logo-area {
+      .logo {
+        width: 100%;
+      }
+      .slogan {
+        font-size: 5vw;
+      }
+    }
+    .about-info {
+      .info {
+        .detail-area {
+          .details {
+            p {
+              font-size: 16px;
+              width: 100%;
+              animation: none; /* Disable animation on smaller screens */
+              white-space: normal;
+              overflow: visible;
+              border-right: none;
+            }
+          }
+        }
+      }
+    }
+  }
+  @media screen and (min-width: 450px) and (max-width: 769px) {
+    .logo-area {
+      justify-content: start;
+      flex-direction: column;
+      align-items: flex-start; // Align items to the start of the left corner
+
+      .logo {
+        width: 100%;
+        max-width: 100%;
+        padding-left: 0px;
+        display: flex;
+        justify-content: center;
+        img {
+          width: 100%; // Ensure the image fills the container width
+          max-width: 250px; // Restrict the maximum width for the image
+          object-fit: contain; // Keep the aspect ratio
+        }
+      }
+
+      .slogan {
+        width: 100%;
+        font-size: 3vw;
+        padding-right: 0px;
+        text-align: left; // Align the text to the left
+        margin-top: 10px; // Add some spacing between the logo and the slogan
+        p {
+          text-align: center;
+          font-size: 18px;
+        }
+      }
+    }
+    .about-info {
+      .info {
+        width: 85%;
+        padding: 10px;
+        .detail-area {
+          justify-content: start;
+          align-items: flex-start;
+          flex-direction: column;
+          .icon-area {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            img {
+              width: 85px;
+              height: 85px;
+            }
+          }
+          .details {
+            margin-left: 0px;
+            p {
+              font-size: 14px;
+              width: 100%;
+              animation: none; /* Disable animation on smaller screens */
+              white-space: normal;
+              overflow: visible;
+              border-right: none;
+            }
+          }
+        }
+      }
+    }
+    .input-area {
+      .drop-area {
+        .dropzone {
+          p {
+            font-size: 14px;
+          }
+        }
+      }
+    }
+  }
+  @media screen and (min-width: 320px) and (max-width: 450px) {
+    .logo-area {
+      justify-content: start;
+      flex-direction: column;
+      align-items: flex-start; // Align items to the start of the left corner
+
+      .logo {
+        width: 100%;
+        max-width: 100%;
+        padding-left: 0px;
+        display: flex;
+        justify-content: center;
+        img {
+          width: 100%; // Ensure the image fills the container width
+          max-width: 250px; // Restrict the maximum width for the image
+          object-fit: contain; // Keep the aspect ratio
+        }
+      }
+
+      .slogan {
+        width: 100%;
+        font-size: 3vw;
+        padding-right: 0px;
+        text-align: left; // Align the text to the left
+        margin-top: 10px; // Add some spacing between the logo and the slogan
+        p {
+          text-align: center;
+          font-size: 14px;
+        }
+      }
+    }
+    .about-info {
+      .info {
+        padding: 10px;
+
+        .detail-area {
+          justify-content: start;
+          align-items: flex-start;
+          flex-direction: column;
+          .icon-area {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            img {
+              width: 75px;
+              height: 75px;
+            }
+          }
+          .details {
+            margin-left: 0px;
+            p {
+              font-size: 12px;
+              width: 100%;
+              animation: none; /* Disable animation on smaller screens */
+              white-space: normal;
+              overflow: visible;
+              border-right: none;
+            }
+          }
+        }
+      }
+    }
+
+    .input-area {
+      .drop-area {
+        .dropzone {
+          p {
+            font-size: 14px;
+          }
+        }
+      }
+    }
+  }
+}
