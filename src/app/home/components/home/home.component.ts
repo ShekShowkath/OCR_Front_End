@@ -25,6 +25,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
   styleUrl: './home.component.scss',
 })
 export class HomeComponent {
+  dateType: string;
   selectedFile: File | null = null;
   filePreview: SafeResourceUrl | null = null;
   isImage: boolean = false;
