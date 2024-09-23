@@ -28,6 +28,8 @@ export class HomeComponent {
   selectedFile: File | null = null;
   filePreview: SafeResourceUrl | null = null;
   isImage: boolean = false;
+  isPdf: boolean = false;
+  isWord: boolean = false;
 
   image_result: string;
 
@@ -66,28 +68,47 @@ export class HomeComponent {
     this.selectedFile = file;
     const reader = new FileReader();
     this.isImage = file.type.startsWith('image/');
+    this.isPdf = file.type === 'application/pdf';
+    this.isWord =
+      file.type === 'application/msword' ||
+      file.type ===
+        'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
 
-    reader.onload = () => {
-      if (this.isImage) {
+    console.log('File type:', file.type);
+
+    if (this.isImage) {
+      console.log('It is an image file.');
+      reader.onload = () => {
         this.filePreview = this.sanitizer.bypassSecurityTrustResourceUrl(
           reader.result as string
         );
-      } else if (file.type === 'application/pdf') {
+      };
+      reader.readAsDataURL(file);
+    } else if (this.isPdf) {
+      console.log('It is a PDF file.');
+      reader.onload = () => {
         const pdfBlob = new Blob([reader.result as ArrayBuffer], {
           type: 'application/pdf',
         });
         const pdfUrl = URL.createObjectURL(pdfBlob);
         this.filePreview =
           this.sanitizer.bypassSecurityTrustResourceUrl(pdfUrl);
-      } else {
-        this.filePreview = null;
-      }
-    };
-
-    if (this.isImage) {
-      reader.readAsDataURL(file);
-    } else if (file.type === 'application/pdf') {
+      };
       reader.readAsArrayBuffer(file);
+    } else if (this.isWord) {
+      console.log('It is a Word file.');
+      reader.onload = () => {
+        const wordBlob = new Blob([reader.result as ArrayBuffer], {
+          type: file.type,
+        });
+        const wordUrl = URL.createObjectURL(wordBlob);
+        this.filePreview =
+          this.sanitizer.bypassSecurityTrustResourceUrl(wordUrl);
+      };
+      reader.readAsArrayBuffer(file);
+    } else {
+      console.log('Unsupported file format.');
+      this.filePreview = null;
     }
   }
 
