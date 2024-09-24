@@ -151,12 +151,49 @@
     // border: 1px solid slateblue;
     // padding: 20px;
     box-sizing: border-box;
+    .select-area {
+      width: 100%;
+      height: auto;
+
+      display: flex;
+      justify-content: center;
+      .select-part {
+        width: 75%;
+        height: auto;
+        // border: 1px solid saddlebrown;
+        label {
+          color: #003e6a;
+          font-size: 16px;
+          font-weight: 550;
+          /* Animation for sliding from the bottom with delay */
+          animation: slideInFromBottom 1.5s ease-out;
+          animation-delay: 0.75s; /* Delay before the animation starts */
+          opacity: 0; /* Start with the text hidden */
+          animation-fill-mode: forwards; /* Ensures the final state of the animation is maintained */
+        }
+        select {
+          width: 50%;
+          height: 50px;
+          border: 1px solid #003e6a;
+          border-radius: 5px;
+          /* Animation for sliding from the bottom with delay */
+          animation: slideInFromBottom 1.5s ease-out;
+          animation-delay: 0.75s; /* Delay before the animation starts */
+          opacity: 0; /* Start with the text hidden */
+          animation-fill-mode: forwards; /* Ensures the final state of the animation is maintained */
+        }
+        .error {
+          color: red;
+        }
+      }
+    }
     .drop-area {
       width: 100%;
       height: auto;
       margin-top: 15px;
       display: flex;
       justify-content: center;
+
       .dropzone {
         width: 75%;
         border: 2px dashed #003e6a;
@@ -193,6 +230,10 @@
           background-color: #f0f8ff;
         }
       }
+    }
+    .error-file {
+      text-align: center;
+      color: red;
     }
 
     .button-area {
@@ -231,7 +272,6 @@
       display: flex;
       justify-content: center;
       margin-top: 20px;
-      
     }
 
     .preview {

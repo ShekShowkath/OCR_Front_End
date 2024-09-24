@@ -30,25 +30,62 @@
     </div>
   </div>
   <div class="input-area">
-    <div class="drop-area">
-      <div
-        class="dropzone"
-        (dragover)="onDragOver($event)"
-        (dragleave)="onDragLeave($event)"
-        (drop)="onDrop($event)"
-      >
-        <p *ngIf="!selectedFile">Drag & drop a file here or click to select</p>
-        <p *ngIf="selectedFile">
-          Drag & drop a other file here or click to select
-        </p>
-        <input type="file" (change)="onFileSelected($event)" />
+    <form #myForm="ngForm" (ngSubmit)="onSubmit()">
+      <div class="select-area">
+        <div class="select-part">
+          <label for="datetype">Select date type :</label><br />
+          <select
+            name="datetype"
+            id="datetype"
+            [(ngModel)]="dateType"
+            #dateTypeCtrl="ngModel"
+            required
+          >
+            <option value="" selected disabled>Select date type :</option>
+            <option value="us">US type</option>
+            <option value="india">India Type</option>
+          </select>
+          <div
+            *ngIf="dateTypeCtrl.invalid && dateTypeCtrl.touched"
+            class="error"
+          >
+            Date type is required
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="button-area">
-      <button [disabled]="!selectedFile" (click)="onSubmit()" mat-raised-button>
-        Submit
-      </button>
-    </div>
+      <pre></pre>
+
+      <div class="drop-area">
+        <div
+          class="dropzone"
+          (dragover)="onDragOver($event)"
+          (dragleave)="onDragLeave($event)"
+          (drop)="onDrop($event)"
+        >
+          <p *ngIf="!selectedFile">
+            Drag & drop a file here or click to select
+          </p>
+          <p *ngIf="selectedFile">
+            Drag & drop another file here or click to select
+          </p>
+          <input
+            type="file"
+            name="selectedFile"
+            (change)="onFileSelected($event)"
+            required
+            #fileInputCtrl="ngModel"
+            [(ngModel)]="selectedFile"
+          />
+        </div>
+      </div>
+      <div *ngIf="!selectedFile && myForm.submitted" class="error-file">
+        File is required
+      </div>
+
+      <div class="button-area">
+        <button [disabled]="!myForm.valid" mat-raised-button>Submit</button>
+      </div>
+    </form>
 
     <div class="spinner-area">
       <p *ngIf="!showProgressSpinner">{{ date_message }}</p>
