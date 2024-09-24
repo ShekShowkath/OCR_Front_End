@@ -159,7 +159,7 @@
       justify-content: center;
       .select-part {
         width: 75%;
-        height: 10vh;
+        height: auto;
         // border: 1px solid saddlebrown;
         label {
           color: #003e6a;
@@ -181,6 +181,9 @@
           animation-delay: 0.75s; /* Delay before the animation starts */
           opacity: 0; /* Start with the text hidden */
           animation-fill-mode: forwards; /* Ensures the final state of the animation is maintained */
+        }
+        .error {
+          color: red;
         }
       }
     }
@@ -227,6 +230,10 @@
           background-color: #f0f8ff;
         }
       }
+    }
+    .error-file {
+      text-align: center;
+      color: red;
     }
 
     .button-area {
